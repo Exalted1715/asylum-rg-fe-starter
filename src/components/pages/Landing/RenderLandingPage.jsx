@@ -32,7 +32,8 @@ function RenderLandingPage(props) {
       </div>
 
       {/* Graphs Section: Add code here for the graphs section for your first ticket */}
-      <div className="graphs-section">
+      
+  <div className="graphs-section">
   <div className="graph-container">
     <img src={GrantRatesByOfficeImg} alt="Grant Rates by Office" />
     <h1>Search Grant Rates By Office</h1>
