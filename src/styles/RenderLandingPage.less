@@ -68,13 +68,26 @@
     margin: 0; /* Remove default margins */
   }
 
-.view-more-data-btn-container {
+  .view-more-data-buttons {
+    display: flex;
+    justify-content: center;
+    column-gap: 1%; /* Adjust the space between buttons as needed */
+    text-align: center;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .view-more-data-btn-container {
     height: 44px;
     width: 180px;
-    margin: 0 auto;
     text-align: center;
     margin-bottom: 10%;
-}
+  }
 
 .middle-section {
     display: flex;
@@ -100,7 +113,7 @@
     font-family: 'beatrice regular';
     
 }
-///////////
+
 
 .bottom-header {
     color: black;
@@ -139,8 +152,6 @@
     margin: 10px 10px 10px 10px; /* Margin for spacing between h2 and h3 */
   }
   
-//////////////// 
-
 .back-to-top {
     width: 8%;
     font-size: 1.2rem;

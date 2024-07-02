@@ -49,15 +49,32 @@ function RenderLandingPage(props) {
   </div>
 
 
-      <div className="view-more-data-btn-container">
-        <Button
-          type="default"
-          style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
-          onClick={() => history.push('/graphs')}
-        >
-          View the Data
-        </Button>
-      </div>
+  <div className="view-more-data-buttons">
+  <div className="view-more-data-btn-container">
+    <Button
+      type="default"
+      style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+      onClick={() => history.push('/graphs')}>
+        View the Data
+      </Button>
+  </div>
+
+  <div className="view-more-data-btn-container">
+    <a
+      href="https://humanrightsfirst.org/wp-content/uploads/2022/10/COW2021001887-I589Data.csv"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ textDecoration: 'none' }}
+    >
+      <Button
+        type="default"
+        style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+      >
+        Download the Data
+      </Button>
+    </a>
+  </div>
+</div>
 
       <div className="middle-section">
         <div className="hrf-img-container">
@@ -97,12 +114,25 @@ function RenderLandingPage(props) {
   </div>
 </div>
 
+<div className="button-container">
+  <div className="view-more-data-btn-container">
+    <Button
+      type="default"
+      style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+      onClick={() => window.open('https://humanrightsfirst.org/library/uscis-records-reveal-systemic-disparities-in-asylum-decisions/', '_blank')}
+    >
+      Read More
+    </Button>
+  </div>
+</div>
 
-        <p onClick={scrollToTop} className="back-to-top">
+      <p onClick={scrollToTop} className="back-to-top">
         Back To Top ^
       </p>
-    </div>
-    </div>
+
+      </div>
+
+  </div>
   );
 }
 export default RenderLandingPage;
