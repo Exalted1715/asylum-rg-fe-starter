@@ -64,7 +64,7 @@ function RenderLandingPage(props) {
       href="https://humanrightsfirst.org/wp-content/uploads/2022/10/COW2021001887-I589Data.csv"
       target="_blank"
       rel="noopener noreferrer"
-      style={{ textDecoration: 'none' }}
+      style={{ textDecoration: 'none' }}// needed for not coloring after clicking
     >
       <Button
         type="default"
