@@ -77,7 +77,7 @@ function GraphWrapper(props) {
     }
   }
 
-  // modiy the this function to use "fecthData" and set the state with fetched data
+  // modify the this function to use "fecthData" and set the state with fetched data
 
   async function updateStateWithNewData(years, view, office, stateSettingCallback) {
     try {
@@ -90,23 +90,23 @@ function GraphWrapper(props) {
 
     if (office === 'all' || !office) {
       axios
-        .get(process.env.REACT_APP_API_URI, {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
+        .get('https://hrf-asylum-be-b.herokuapp.com/cases/fiscalSummary', {
+          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod! --check
           params: {
             from: years[0],
             to: years[1],
           },
         })
         .then(result => {
-          stateSettingCallback(view, office, test_data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
+          stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod! --check
         })
         .catch(err => {
           console.error(err);
         });
     } else {
       axios
-        .get(process.env.REACT_APP_API_URI, {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
+        .get('https://hrf-asylum-be-b.herokuapp.com/cases/fiscalSummary', {
+          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!-- check
           params: {
             from: years[0],
             to: years[1],
@@ -114,11 +114,12 @@ function GraphWrapper(props) {
           },
         })
         .then(result => {
-          stateSettingCallback(view, office, test_data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
+          stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
         })
         .catch(err => {
           console.error(err);
         });
+        // end of changes
     }
   }
   const clearQuery = (view, office) => {
