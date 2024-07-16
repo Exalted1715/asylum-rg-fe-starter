@@ -1,4 +1,11 @@
 const rawApiDataToPlotlyReadyInfo = (view, office, data) => {
+  console.log('Data received in rawApiDataToPlotlyReadyInfo:', data); // Log the data received
+  
+  if (!data || !data[0] || !data[0].yearResults) {
+    throw new Error('yearResults is not present in the data');
+  }
+  console.log('yearResults:', data[0].yearResults);
+  
   const officeNames = [
     'Los Angeles, CA',
     'San Francisco, CA',

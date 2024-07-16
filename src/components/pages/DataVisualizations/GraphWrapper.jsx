@@ -49,7 +49,7 @@ function GraphWrapper(props) {
         break;
     }
   }
-//added this function
+
   async function fetchData(years, view, office) {
     const baseUrl = 'https://hrf-asylum-be-b.herokuapp.com/cases';
     let url;
@@ -66,20 +66,23 @@ function GraphWrapper(props) {
 
     try {
       const response = await axios.get(url);
-      console.log('API Response:', response.data); // Log the API response
+     // console.log('API Response:', response.data); // Log the API response
       return response.data;
-      
     } catch (error) {
       console.error('Error fetching data:', error);
       throw error;
     }
   }
-  //updated this fucntion 
 
   async function updateStateWithNewData(years, view, office, stateSettingCallback) {
     try {
       const data = await fetchData(years, view, office);
-      stateSettingCallback(view, office, data);
+      console.log('Fetched Data:', data); // Log fetched data
+      if (data && data.yearResults) {
+        stateSettingCallback(view, office, data);
+      } else {
+        throw new Error('Invalid data format');
+      }
     } catch (error) {
       console.error('Error updating state with new data:', error);
     }
