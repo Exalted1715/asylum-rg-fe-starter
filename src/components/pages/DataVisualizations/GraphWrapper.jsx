@@ -16,6 +16,32 @@ import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
 const { background_color } = colors;
 
+// define a function to fetch data from the API based on the view and office
+
+async function fetchData(years, view, office) {
+  const baseUrl = 'https://hrf-asylum-be-b.herokuapp.com/cases';
+  let url;
+
+  if (view === 'time-series') {
+    url = `${baseUrl}/fiscalSummary?from=${years[0]}&to=${years[1]}`;
+  } else if (view === 'citizenship') {
+    url = `${baseUrl}/citizenshipSummary?from=${years[0]}&to=${years[1]}`;
+  }
+
+  if (office) {
+    url += `&office=${office}`;
+  }
+
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+}
+// end of changes
+
 function GraphWrapper(props) {
   const { set_view, dispatch } = props;
   let { office, view } = useParams();
@@ -50,28 +76,17 @@ function GraphWrapper(props) {
         break;
     }
   }
-  function updateStateWithNewData(years, view, office, stateSettingCallback) {
-    /*
-          _                                                                             _
-        |                                                                                 |
-        |   Example request for once the `/summary` endpoint is up and running:           |
-        |                                                                                 |
-        |     `${url}/summary?to=2022&from=2015&office=ZLA`                               |
-        |                                                                                 |
-        |     so in axios we will say:                                                    |
-        |                                                                                 |     
-        |       axios.get(`${url}/summary`, {                                             |
-        |         params: {                                                               |
-        |           from: <year_start>,                                                   |
-        |           to: <year_end>,                                                       |
-        |           office: <office>,       [ <-- this one is optional! when    ]         |
-        |         },                        [ querying by `all offices` there's ]         |
-        |       })                          [ no `office` param in the query    ]         |
-        |                                                                                 |
-          _                                                                             _
-                                   -- Mack 
-    
-    */
+
+  // modiy the this function to use "fecthData" and set the state with fetched data
+
+  async function updateStateWithNewData(years, view, office, stateSettingCallback) {
+    try {
+      const data = await fetchData(years, view, office);
+      stateSettingCallback(view, office, data);
+    } catch (error) {
+      console.error('Error updating state with new data:', error);
+    }
+  
 
     if (office === 'all' || !office) {
       axios
