@@ -4,7 +4,8 @@ import SubTable from './SubTable';
 
 function TableRow(props) {
   const { columns, row, tableWidth, rowHeight } = props;
-
+  // row should be an object with keys for each column here;
+  // columns should be an array
   return (
     <div
       className="table-row"
@@ -17,17 +18,17 @@ function TableRow(props) {
     >
       {columns.map((property, idx) => {
         if (row) {
-          if (typeof row[property] === 'object' && row[property] !== null) {
+          if (typeof row[property] === 'object') {
             return (
               <SubTable
-                key={idx}
                 dataObject={row[property]}
                 rowHeight={rowHeight} // so for the SubTablesTable the row should be an object of objects
+                key={idx}
               />
             );
           } else {
             return (
-              <div key={idx} style={{ overflow: 'hidden', flex: '1' }}>
+              <div  key={idx} style={{ overflow: 'hidden', flex: '1' }}>
                 <TableInnerSquare
                   innerData={row[property]}
                   rowHeight={rowHeight}
@@ -36,7 +37,6 @@ function TableRow(props) {
             );
           }
         }
-        return null; // Ensure a value is returned
       })}
     </div>
   );
