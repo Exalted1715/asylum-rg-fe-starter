@@ -50,21 +50,28 @@ function GraphWrapper(props) {
         break;
     }
   }
-//writing new api intgration here
+//writing new api intgration here, asnychronous function here, so others dont have to wait
   async function fetchData(years, view, office) {
     const baseUrl = 'https://hrf-asylum-be-b.herokuapp.com/cases';
     let url;
   
+    //Construct the URL based on the view
     if (view === 'time-series') {
+
+    //For the time-series view, we need to fiscalSummary endpoint
       url = `${baseUrl}/fiscalSummary?from=${years[0]}&to=${years[1]}`;
     } else if (view === 'citizenship') {
+
+    //For the citizenship view, we need the citzenshipSummary endpoint
       url = `${baseUrl}/citizenshipSummary?from=${years[0]}&to=${years[1]}`;
     }
   
+    //If an office is specidied and it is not 'all', add it to the query string
     if (office && office !== 'all') {
       url += `&office=${office}`;
     }
   
+    //Fetch data from the constructed URL 
     try {
       const response = await axios.get(url);
       console.log('API response data:', response.data); //  log the response data

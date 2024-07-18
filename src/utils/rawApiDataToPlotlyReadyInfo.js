@@ -1,4 +1,5 @@
 const rawApiDataToPlotlyReadyInfo = (view, office, data) => {
+  
   console.log('Data received in rawApiDataToPlotlyReadyInfo:', data); // Log the data received
   
   if (!data || !data.yearResults) {
