@@ -54,35 +54,36 @@ function GraphWrapper(props) {
   async function fetchData(years, view, office) {
     const baseUrl = 'https://hrf-asylum-be-b.herokuapp.com/cases';
     let url;
-
+  
     if (view === 'time-series') {
       url = `${baseUrl}/fiscalSummary?from=${years[0]}&to=${years[1]}`;
     } else if (view === 'citizenship') {
       url = `${baseUrl}/citizenshipSummary?from=${years[0]}&to=${years[1]}`;
     }
-
+  
     if (office && office !== 'all') {
       url += `&office=${office}`;
     }
-
+  
     try {
       const response = await axios.get(url);
+      console.log('API response data:', response.data); // Add this line to log the response data
       return response.data;
-      
     } catch (error) {
       console.error('Error fetching data:', error);
       throw error;
     }
-
-    
   }
 
   async function updateStateWithNewData(years, view, office, stateSettingCallback) {
     try {
       const data = await fetchData(years, view, office);
+      console.log('Data received in updateStateWithNewData:', data); // Log the data received
       if (data && data.yearResults) {
+        console.log('yearResults is present in the data:', data.yearResults); // Log yearResults
         stateSettingCallback(view, office, data);
       } else {
+        console.error('yearResults is not present in the data');
         throw new Error('Invalid data format');
       }
     } catch (error) {
