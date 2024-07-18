@@ -50,7 +50,7 @@ function GraphWrapper(props) {
         break;
     }
   }
-
+//writing new api intgration here
   async function fetchData(years, view, office) {
     const baseUrl = 'https://hrf-asylum-be-b.herokuapp.com/cases';
     let url;
@@ -67,7 +67,7 @@ function GraphWrapper(props) {
   
     try {
       const response = await axios.get(url);
-      console.log('API response data:', response.data); // Add this line to log the response data
+      console.log('API response data:', response.data); //  log the response data
       return response.data;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -75,6 +75,7 @@ function GraphWrapper(props) {
     }
   }
 
+  //updated state here
   async function updateStateWithNewData(years, view, office, stateSettingCallback) {
     try {
       const data = await fetchData(years, view, office);
