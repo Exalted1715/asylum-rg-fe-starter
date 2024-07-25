@@ -1,4 +1,4 @@
-// src/auth0-provider-with-history.js
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
