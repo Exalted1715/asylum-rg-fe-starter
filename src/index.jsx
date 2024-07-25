@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'antd/dist/antd.less';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LandingPage } from './components/pages/Landing';
@@ -11,12 +11,11 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import reducer from './state/reducers';
 import { colors } from './styles/data_vis_colors';
-import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';  // Import useAuth0
-import LoginButton from './components/auth/LoginButton';
-import LogoutButton from './components/auth/LogoutButton';
+import { Auth0Provider} from '@auth0/auth0-react';
+import AuthButton from './components/auth/AuthButton'; // Import the new AuthButton component
 import Profile from './components/auth/Profile';
 import Navigation from './components/auth/Navigation';
-import { Layout } from 'antd';  // Import Layout from antd
+import { Layout } from 'antd';
 
 const { primary_accent_color } = colors;
 const store = configureStore({ reducer: reducer });
@@ -49,7 +48,6 @@ ReactDOM.render(
 
 export function App() {
   const { Footer, Header } = Layout;
-  const { isAuthenticated } = useAuth0();  // Use useAuth0 to get authentication status
 
   return (
     <Layout>
@@ -63,7 +61,7 @@ export function App() {
       >
         <HeaderContent />
         <Navigation />
-        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+        <AuthButton /> {/* Use the new AuthButton component */}
       </Header>
       <Switch>
         <Route path="/" exact component={LandingPage} />
