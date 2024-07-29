@@ -6,9 +6,28 @@ const Navigation = () => {
   const { isAuthenticated } = useAuth0();
 
   return (
-    <nav>
-      {isAuthenticated && <Link to="/profile">Profile</Link>}
-    </nav>
+    <h1>
+      {isAuthenticated && (
+        <Link
+          to="/profile"
+          style={{
+            color: 'rgb(226, 240, 247)',
+            paddingRight: '75px',
+            textDecoration: 'none',
+            backgroundColor: 'transparent',
+            outline: 'none',
+            cursor: 'pointer',
+            transition: 'color 0.3s',
+            boxSizing: 'border-box',
+            paddingLeft: '75px',
+            fontSize: '14px',  // Shrinking font size by half
+            fontFamily: 'AcuminProRegular'  // Adding font style
+          }}
+        >
+          Profile
+        </Link>
+      )}
+    </h1>
   );
 };
 

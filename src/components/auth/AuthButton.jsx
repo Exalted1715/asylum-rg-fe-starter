@@ -6,34 +6,32 @@ const AuthButton = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   return (
-    <Button
-      onClick={() => {
-        if (isAuthenticated) {
-          logout({ returnTo: window.location.origin });
-        } else {
-          loginWithRedirect();
-        }
-      }}
-      style={{
-        backgroundColor: 'lightgray',
-        color: 'black',
-        borderRadius: '50%',
-        width: '0.85in',
-        height: '0.75in',
-        display: 'flex',          // Use flexbox for centering
-        alignItems: 'center',    // Vertically center content
-        justifyContent: 'center', // Horizontally center content
-        fontWeight: 'bold',
-        fontFamily: 'Arial, sans-serif',
-        position: 'relative',    // Relative positioning for adjustments
-    top: '.60in', // Move down 
-    left: '-1.55in', // Move left
-    padding: 0,              // Remove default padding
-    lineHeight: 'normal',    // Reset line height to default
-      }}
-    >
-      {isAuthenticated ? 'Log Out' : 'Log In'}
-    </Button>
+    <div style={{ textAlign: 'right', marginTop: '0.5in', marginRight: '20px' }}>
+      <Button
+        onClick={() => {
+          if (isAuthenticated) {
+            logout({ returnTo: window.location.origin });
+          } else {
+            loginWithRedirect();
+          }
+        }}
+        style={{
+          backgroundColor: 'grey',
+          color: 'white',
+          borderRadius: '4px',
+          padding: '10px 20px',
+          fontWeight: 'bold',
+          fontFamily: 'Arial, sans-serif',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: '0.5in',
+          height: '50px', // Adjust height as needed
+        }}
+      >
+        {isAuthenticated ? 'Log Out' : 'Log In'}
+      </Button>
+    </div>
   );
 };
 

@@ -60,7 +60,6 @@ export function App() {
         }}
       >
         <HeaderContent />
-        <Navigation />
         <AuthButton /> {/* Use the new AuthButton component */}
       </Header>
       <Switch>
