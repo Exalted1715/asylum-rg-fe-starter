@@ -14,7 +14,7 @@ import { colors } from './styles/data_vis_colors';
 import { Auth0Provider} from '@auth0/auth0-react';
 import AuthButton from './components/auth/AuthButton'; // Import the new AuthButton component
 import Profile from './components/auth/Profile';
-import Navigation from './components/auth/Navigation';
+//import Navigation from './components/auth/Navigation';
 import { Layout } from 'antd';
 
 const { primary_accent_color } = colors;
