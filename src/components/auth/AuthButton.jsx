@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Button } from 'antd'; // Assuming you're using Ant Design for buttons
+import { Button } from 'antd'; // using Ant Design for buttons
 
 const AuthButton = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
